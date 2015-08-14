@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.input.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import de.codemusings.colorful.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.codemusings.colorful.Controller">
+   <children>
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0">
+               <children>
+                  <Label text="Hue">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Spinner fx:id="hueSpinner" editable="true" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Saturation">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Spinner fx:id="saturationSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Brightness">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Spinner fx:id="brightnessSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </GridPane.margin>
+               <children>
+                  <Spinner fx:id="redSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Label text="Red">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <Spinner fx:id="greenSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Label text="Green">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <Spinner fx:id="blueSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Label text="Blue">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <SBPickerControl fx:id="sbPicker" style="-fx-border-color: black;" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" top="10.0" />
+               </GridPane.margin>
+            </SBPickerControl>
+            <HuePickerControl fx:id="huePicker" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </HuePickerControl>
+            <Region fx:id="colorView" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="10.0" right="20.0" top="10.0" />
+               </GridPane.margin>
+            </Region>
+            <HBox alignment="CENTER" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets bottom="20.0" right="20.0" top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <TextField fx:id="hexField" alignment="CENTER" editable="false" prefWidth="200.0" text="#FFFFFF" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets bottom="20.0" top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <MenuButton alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Copy to Clipboard">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#copyHSBToClipboard" text="HSB Color Space">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="DIGIT1" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                      <MenuItem mnemonicParsing="false" onAction="#copyRGBToClipboard" text="RGB Color Space">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="DIGIT2" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#copyHexToClipboard" text="Hex Format">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="DIGIT3" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                    </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

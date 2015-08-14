@@ -1,0 +1,31 @@
+<project name="Colorful" default="run" basedir=".">
+
+	<target name="clean">
+		<delete dir="bin"/>
+		<delete dir="dist"/>
+	</target>
+
+	<target name="build">
+		<mkdir dir="bin"/>
+		<javac srcdir="src" destdir="bin" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked"/>
+            <compilerarg value="-Xlint:deprecation"/>
+        </javac>
+	</target>
+
+	<target name="dist" depends="build">
+		<mkdir dir="dist"/>
+		<jar destfile="dist/Colorful.jar" basedir="bin">
+            <fileset dir="fxml"/>
+			<manifest>
+                <attribute name="Main-Class"
+                           value="de.codemusings.colorful.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+    <target name="run" depends="dist">
+        <java jar="dist/Colorful.jar" fork="true"/>
+    </target>
+
+</project>

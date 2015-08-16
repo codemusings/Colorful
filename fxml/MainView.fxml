@@ -11,14 +11,40 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.codemusings.colorful.Controller">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+      <TilePane alignment="CENTER" hgap="5.0" prefColumns="25" prefHeight="35.0" prefRows="1" prefWidth="500.0" style="-fx-background-color: #dddddd;">
+         <children>
+            <Region prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="15.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="45.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="75.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="105.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="135.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="165.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="195.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="225.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="255.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="285.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="315.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="345.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="375.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="405.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+            <Region layoutX="435.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+      </TilePane>
+      <GridPane layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="ALWAYS" />
@@ -64,12 +90,25 @@
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="122.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Label text="Opacity">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Spinner fx:id="opacitySpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4">
                <GridPane.margin>
                   <Insets bottom="10.0" top="20.0" />
                </GridPane.margin>
                <children>
-                  <Spinner fx:id="redSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Spinner fx:id="redSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefWidth="100.0" />
                   <Label text="Red">
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -77,12 +116,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
                <children>
-                  <Spinner fx:id="greenSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Spinner fx:id="greenSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefWidth="100.0" />
                   <Label text="Green">
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -90,12 +129,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
                <children>
-                  <Spinner fx:id="blueSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <Spinner fx:id="blueSpinner" editable="true" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefWidth="100.0" />
                   <Label text="Blue">
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -103,30 +142,35 @@
                   </Label>
                </children>
             </HBox>
-            <SBPickerControl fx:id="sbPicker" style="-fx-border-color: black;" GridPane.rowIndex="3">
+            <SBPickerControl fx:id="sbPicker" style="-fx-border-color: black;" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" top="10.0" />
                </GridPane.margin>
             </SBPickerControl>
-            <HuePickerControl fx:id="huePicker" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <HuePickerControl fx:id="huePicker" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </GridPane.margin>
             </HuePickerControl>
-            <Region fx:id="colorView" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Region fx:id="colorView" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="10.0" right="20.0" top="10.0" />
                </GridPane.margin>
             </Region>
-            <HBox alignment="CENTER" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets bottom="20.0" right="20.0" top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </GridPane.margin>
                <children>
-                  <TextField fx:id="hexField" alignment="CENTER" editable="false" prefWidth="200.0" text="#FFFFFF" />
+                  <TextField fx:id="hexField" alignment="CENTER" editable="false" prefWidth="100.0" text="#FFFFFF" />
+                  <Label text="Hex">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" GridPane.rowIndex="4">
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="20.0" top="10.0" />
                </GridPane.margin>
@@ -149,6 +193,11 @@
                   </MenuButton>
                </children>
             </HBox>
+            <OpacityPickerControl fx:id="opacityPicker" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="10.0" />
+               </GridPane.margin>
+            </OpacityPickerControl>
          </children>
       </GridPane>
    </children>

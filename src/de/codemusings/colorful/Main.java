@@ -54,6 +54,7 @@ public class Main extends Application {
         );
     
         stage.setTitle("Colorful");
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.sizeToScene();
         stage.show();

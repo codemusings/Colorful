@@ -68,9 +68,13 @@ public class Controller {
     private final DoubleSpinnerValueFactory brightnessValueFactory
     = new DoubleSpinnerValueFactory(0.0, 1.0, 1.0, 0.01);
 
+    private final DoubleSpinnerValueFactory opacityValueFactory
+    = new DoubleSpinnerValueFactory(0.0, 1.0, 1.0, 0.01);
+
     @FXML private Spinner<Double> hueSpinner;
     @FXML private Spinner<Double> saturationSpinner;
     @FXML private Spinner<Double> brightnessSpinner;
+    @FXML private Spinner<Double> opacitySpinner;
 
     private final IntegerSpinnerValueFactory redValueFactory
     = new IntegerSpinnerValueFactory(0, 255, 255);
@@ -87,6 +91,7 @@ public class Controller {
 
     @FXML private SBPickerControl sbPicker;
     @FXML private HuePickerControl huePicker;
+    @FXML private OpacityPickerControl opacityPicker;
     @FXML private Region colorView;
 
     @FXML private TextField hexField;
@@ -149,9 +154,27 @@ public class Controller {
             this.sbPicker.saturationProperty(),
             this.saturationValueFactory.valueProperty()
         );
+
         Bindings.<Double>bindBidirectional(
             this.huePicker.hueProperty(),
             this.hueValueFactory.valueProperty()
+        );
+
+        Bindings.<Double>bindBidirectional(
+            this.opacityPicker.brightnessProperty(),
+            this.brightnessValueFactory.valueProperty()
+        );
+        Bindings.<Double>bindBidirectional(
+            this.opacityPicker.hueProperty(),
+            this.hueValueFactory.valueProperty()
+        );
+        Bindings.<Double>bindBidirectional(
+            this.opacityPicker.opacityValueProperty(),
+            this.opacityValueFactory.valueProperty()
+        );
+        Bindings.<Double>bindBidirectional(
+            this.opacityPicker.brightnessProperty(),
+            this.brightnessValueFactory.valueProperty()
         );
 
         final Controller ctrl = this;
@@ -170,7 +193,8 @@ public class Controller {
                 Color c = Color.hsb(
                     ctrl.hueValueFactory.valueProperty().getValue(),
                     ctrl.saturationValueFactory.valueProperty().getValue(),
-                    ctrl.brightnessValueFactory.valueProperty().getValue()
+                    ctrl.brightnessValueFactory.valueProperty().getValue(),
+                    ctrl.opacityValueFactory.valueProperty().getValue()
                 );
                 ctrl.redValueFactory.valueProperty().setValue(
                     (int)Math.round(c.getRed() * 255)
@@ -184,14 +208,21 @@ public class Controller {
                 ctrl.colorView.setBackground(
                     new Background(new BackgroundFill(c, null, null))
                 );
-                ctrl.hexField.textProperty().setValue(
-                    String.format(
+                if (ctrl.opacityValueFactory.valueProperty().getValue() == 1.0)
+                    ctrl.hexField.textProperty().setValue(String.format(
                         "#%02X%02X%02X",
                         Math.round(c.getRed() * 255), 
                         Math.round(c.getGreen() * 255), 
                         Math.round(c.getBlue() * 255) 
-                    )
-                );
+                    ));
+                else
+                    ctrl.hexField.textProperty().setValue(String.format(
+                        "#%02X%02X%02X%02X",
+                        Math.round(c.getRed() * 255), 
+                        Math.round(c.getGreen() * 255), 
+                        Math.round(c.getBlue() * 255),
+                        Math.round(c.getOpacity() * 255) 
+                    ));
 
                 ctrl.isUpdating = false;
             }
@@ -199,6 +230,36 @@ public class Controller {
         this.brightnessValueFactory.valueProperty().addListener(hsbListener);
         this.hueValueFactory.valueProperty().addListener(hsbListener);
         this.saturationValueFactory.valueProperty().addListener(hsbListener);
+        this.opacityValueFactory.valueProperty().addListener(
+            (observable, oldValue, newValue) -> {
+                if (this.opacityValueFactory.valueProperty().getValue() == 1.0)
+                    return;
+                Color c = Color.hsb(
+                    ctrl.hueValueFactory.valueProperty().getValue(),
+                    ctrl.saturationValueFactory.valueProperty().getValue(),
+                    ctrl.brightnessValueFactory.valueProperty().getValue(),
+                    ctrl.opacityValueFactory.valueProperty().getValue()
+                );
+                if (ctrl.opacityValueFactory.valueProperty().getValue() == 1.0)
+                    ctrl.hexField.textProperty().setValue(String.format(
+                        "#%02X%02X%02X",
+                        Math.round(c.getRed() * 255), 
+                        Math.round(c.getGreen() * 255), 
+                        Math.round(c.getBlue() * 255) 
+                    ));
+                else
+                    ctrl.hexField.textProperty().setValue(String.format(
+                        "#%02X%02X%02X%02X",
+                        Math.round(c.getRed() * 255), 
+                        Math.round(c.getGreen() * 255), 
+                        Math.round(c.getBlue() * 255),
+                        Math.round(c.getOpacity() * 255) 
+                    ));
+                this.colorView.setBackground(
+                    new Background(new BackgroundFill(c, null, null))
+                );
+            }
+        );
 
         ChangeListener<Integer> rgbListener = new ChangeListener<Integer>() {
 
@@ -214,7 +275,8 @@ public class Controller {
                 Color c = Color.rgb(
                     ctrl.redValueFactory.valueProperty().getValue(),
                     ctrl.greenValueFactory.valueProperty().getValue(),
-                    ctrl.blueValueFactory.valueProperty().getValue()
+                    ctrl.blueValueFactory.valueProperty().getValue(),
+                    ctrl.opacityValueFactory.valueProperty().getValue()
                 );
                 ctrl.hueValueFactory.valueProperty().setValue(c.getHue());
                 ctrl.saturationValueFactory.valueProperty().setValue(
@@ -226,14 +288,21 @@ public class Controller {
                 ctrl.colorView.setBackground(
                     new Background(new BackgroundFill(c, null, null))
                 );
-                ctrl.hexField.textProperty().setValue(
-                    String.format(
+                if (ctrl.opacityValueFactory.valueProperty().getValue() == 1.0)
+                    ctrl.hexField.textProperty().setValue(String.format(
                         "#%02X%02X%02X",
                         Math.round(c.getRed() * 255), 
                         Math.round(c.getGreen() * 255), 
                         Math.round(c.getBlue() * 255) 
-                    )
-                );
+                    ));
+                else
+                    ctrl.hexField.textProperty().setValue(String.format(
+                        "#%02X%02X%02X%02X",
+                        Math.round(c.getRed() * 255), 
+                        Math.round(c.getGreen() * 255), 
+                        Math.round(c.getBlue() * 255),
+                        Math.round(c.getOpacity() * 255) 
+                    ));
 
                 ctrl.isUpdating = false;
             }
@@ -245,6 +314,7 @@ public class Controller {
         this.hueSpinner.setValueFactory(this.hueValueFactory);
         this.saturationSpinner.setValueFactory(this.saturationValueFactory);
         this.brightnessSpinner.setValueFactory(this.brightnessValueFactory);
+        this.opacitySpinner.setValueFactory(this.opacityValueFactory);
 
         this.redSpinner.setValueFactory(this.redValueFactory);
         this.greenSpinner.setValueFactory(this.greenValueFactory);

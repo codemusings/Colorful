@@ -113,7 +113,7 @@ public class SBPickerControl extends Pane {
         view.setOnMouseDragged(handler);
 
         ChangeListener<Double> listener = (observable, oldValue, newValue) -> {
-                control.updateCanvas();
+                this.updateCanvas();
         };
         this.brightnessProperty.addListener(listener);
         this.hueProperty.addListener(listener);

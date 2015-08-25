@@ -1,4 +1,4 @@
-/* OpacityPickerControl.java - A picker control for the opacity of a color.
+/* ColorView.java - A view for the currently selected color.
  *
  * Copyright (c) 2015, Tilo Villwock <codemusings at gmail dot com>
  * All rights reserved.
@@ -38,21 +38,20 @@ import javafx.beans.property.SimpleObjectProperty;
 
 import javafx.beans.value.ChangeListener;
 
-import javafx.event.EventHandler;
-
 import javafx.scene.effect.BlendMode;
-
-import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 
 import javafx.scene.paint.Color;
 
-public class OpacityPickerControl extends Pane {
+public class ColorView extends Pane {
 
     private final ObjectProperty<Double> hueProperty;
     private final ObjectProperty<Double> saturationProperty;
@@ -60,13 +59,13 @@ public class OpacityPickerControl extends Pane {
     private final ObjectProperty<Double> opacityProperty;
 
     private final WritableImage background;
-    private final WritableImage canvas;
+    private final Region foreground;
 
-    public OpacityPickerControl() {
-        this(15, 200);
+    public ColorView() {
+        this(200, 200);
     }
 
-    public OpacityPickerControl(double width, double height) {
+    public ColorView(double width, double height) {
 
         super.setMinSize(width, height);
         super.setMaxSize(width, height);
@@ -77,49 +76,28 @@ public class OpacityPickerControl extends Pane {
         this.brightnessProperty = new SimpleObjectProperty<>(1.0);
         this.opacityProperty = new SimpleObjectProperty<>(1.0);
 
+        /* image view used to draw the background grid */
         this.background = new WritableImage((int)width - 2, (int)height - 2);
         this.drawBackground();
         ImageView view = new ImageView(this.background);
         super.getChildren().add(view);
         view.relocate(1, 1);
 
-        this.canvas = new WritableImage((int)width - 2, (int)height - 2);
-        this.updateCanvas();
-        view = new ImageView(this.canvas);
-        super.getChildren().add(view);
-        view.relocate(1, 1);
+        /* region to display the currently selected color */
+        this.foreground = new Region();
+        this.foreground.setPrefSize((int)width - 2, (int)height - 2);
+        this.updateForeground();
+        super.getChildren().add(foreground);
+        this.foreground.relocate(1, 1);
 
-        final OpacityPickerControl control = this;
-        EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent e) {
-
-                double y;
-
-                if (e.getY() < 0)
-                    y = 0;
-                else if (e.getY() > canvas.getHeight() - 1)
-                    y = canvas.getHeight() - 1;
-                else
-                    y = e.getY();
-
-                double h = canvas.getHeight();
-                control.opacityProperty.setValue((h - 1 - y) / (h - 1));
-
-                control.updateCanvas();
-            }
-        };
-        view.setOnMouseClicked(handler);
-        view.setOnMouseDragged(handler);
-
+        /* update region color on change */
         ChangeListener<Double> listener = (observable, oldValue, newValue) -> {
-                control.updateCanvas();
+            this.updateForeground();
         };
         this.brightnessProperty.addListener(listener);
         this.hueProperty.addListener(listener);
-        this.opacityProperty.addListener(listener);
         this.saturationProperty.addListener(listener);
+        this.opacityProperty.addListener(listener);
     }
 
     private void drawBackground() {
@@ -156,57 +134,16 @@ public class OpacityPickerControl extends Pane {
         return this.saturationProperty;
     }
 
-    private void updateCanvas() {
+    private void updateForeground() {
 
-        double w = this.canvas.getWidth();
-        double h = this.canvas.getHeight();
-
-        double hue = this.hueProperty.getValue();
-        double sat = this.saturationProperty.getValue();
-        double bri = this.brightnessProperty.getValue();
-
-        PixelWriter writer = this.canvas.getPixelWriter();
-
-        for (int y = 0; y < h; y++) {
-            double opacity = (h - 1 - y) / (h - 1); 
-            for (int x = 0; x < w; x++) {
-                writer.setColor(x, y, Color.hsb(hue, sat, bri, opacity));
-            }
-        }
-
-        double o = this.opacityProperty.getValue();
-        int y = (int)(h - 1) - (int)Math.round(o * (h - 1) / 1.0);
-        int[][] left = {
-            {0, y - 2},
-            {0, y - 1}, {1, y - 1},
-            {0, y},     {1, y},     {2, y},
-            {0, y + 1}, {1, y + 1},
-            {0, y + 2}
-        };
-        int[][] right = {
-            {(int)w - 1, y - 2},
-            {(int)w - 1, y - 1}, {(int)w - 2, y - 1},
-            {(int)w - 1, y},     {(int)w - 2, y},     {(int)w - 3, y},
-            {(int)w - 1, y + 1}, {(int)w - 2, y + 1},
-            {(int)w - 1, y + 2}
-        };
-        for (int i = 0; i < left.length; i++) {
-            if (left[i][0] < 0 || left[i][1] < 0)
-                continue;
-            if (left[i][0] > this.canvas.getWidth() - 1)
-                continue;
-            if (left[i][1] > this.canvas.getHeight() - 1)
-                continue;
-            writer.setColor(left[i][0], left[i][1], Color.BLACK);
-        }
-        for (int i = 0; i < left.length; i++) {
-            if (right[i][0] < 0 || right[i][1] < 0)
-                continue;
-            if (right[i][0] > this.canvas.getWidth() - 1)
-                continue;
-            if (right[i][1] > this.canvas.getHeight() - 1)
-                continue;
-            writer.setColor(right[i][0], right[i][1], Color.BLACK);
-        }
+        Color c = Color.hsb(
+            this.hueProperty.getValue(),
+            this.saturationProperty.getValue(),
+            this.brightnessProperty.getValue(),
+            this.opacityProperty.getValue()
+        );
+        this.foreground.setBackground(
+            new Background(new BackgroundFill(c, null, null))
+        );
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -11,30 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.codemusings.colorful.Controller">
    <children>
-      <TilePane alignment="CENTER" hgap="5.0" prefColumns="25" prefHeight="35.0" prefRows="1" prefWidth="500.0" style="-fx-background-color: #dddddd;">
-         <children>
-            <Region prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="15.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="45.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="75.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="105.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="135.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="165.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="195.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="225.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="255.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="285.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="315.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="345.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="375.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="405.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-            <Region layoutX="435.0" layoutY="15.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white; -fx-border-color: #cccccc;" />
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-         </padding>
-      </TilePane>
-      <GridPane layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
@@ -152,11 +130,11 @@
                   <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </GridPane.margin>
             </HuePickerControl>
-            <Region fx:id="colorView" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <OpacityPickerControl fx:id="opacityPicker" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets bottom="10.0" right="20.0" top="10.0" />
+                  <Insets left="5.0" right="10.0" />
                </GridPane.margin>
-            </Region>
+            </OpacityPickerControl>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -193,11 +171,11 @@
                   </MenuButton>
                </children>
             </HBox>
-            <OpacityPickerControl fx:id="opacityPicker" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <ColorView fx:id="colorView" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
-                  <Insets left="5.0" right="10.0" />
+                  <Insets bottom="10.0" right="20.0" top="10.0" />
                </GridPane.margin>
-            </OpacityPickerControl>
+            </ColorView>
          </children>
       </GridPane>
    </children>

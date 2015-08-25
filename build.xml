@@ -19,7 +19,7 @@
             <fileset dir="fxml"/>
 			<manifest>
                 <attribute name="Main-Class"
-                           value="de.codemusings.colorful.Main"/>
+                           value="de.codemusings.colorful.Colorful"/>
 			</manifest>
 		</jar>
 	</target>

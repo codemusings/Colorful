@@ -1,4 +1,4 @@
-/* Main.java - The Colorful main class
+/* Colorful.java - The Colorful main class
  *
  * Copyright (c) 2015, Tilo Villwock <codemusings at gmail dot com>
  * All rights reserved.
@@ -45,12 +45,14 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Colorful extends Application {
 
     public void start(Stage stage) throws IOException {
 
         AnchorPane root = FXMLLoader.<AnchorPane>load(
-            this.getClass().getResource("/MainView.fxml")
+            this.getClass().getResource(
+                "/de/codemusings/colorful/MainView.fxml"
+            )
         );
     
         stage.setTitle("Colorful");
